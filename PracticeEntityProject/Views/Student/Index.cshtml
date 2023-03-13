@@ -1,0 +1,41 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Student Portal";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    function SearchByName(flag = false) {
+        var searchtext = null;
+        if (flag) {
+            searchtext = document.getElementById("SearchTextBoxId").value;
+        }
+        $.ajax({
+            url: "student/StudentDetails",
+            data: { text: searchtext},
+            success: function (result) {
+                $('#StudentDetailsTblId').remove();
+                $('#tbl').append(result);
+            }
+        });
+    }
+</script>
+
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <input type="submit" name="Create New" value="CreateNew" class="btn btn-success" onclick="location.href='@Url.Action("Create", "Student")'" />
+</p>
+<div>
+    <input type="text" id="SearchTextBoxId" placeholder="Search By Name" style="border-block:solid;">
+    <input type="submit" name="Search" value="Search" class="btn btn-outline-info" onclick="SearchByName(true);" />
+    <input type="submit" name="Display All" value="DisplayAll" class="btn btn-outline-info" onclick="SearchByName();" />
+</div>
+<div id="tbl">
+    @*@{
+        Html.RenderPartial("StudentDetails");
+    }*@   
+    @Html.Action("StudentDetails","Student")
+</div>
