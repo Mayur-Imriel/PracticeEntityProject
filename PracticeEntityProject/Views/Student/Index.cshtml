@@ -33,9 +33,6 @@
     <input type="submit" name="Search" value="Search" class="btn btn-outline-info" onclick="SearchByName(true);" />
     <input type="submit" name="Display All" value="DisplayAll" class="btn btn-outline-info" onclick="SearchByName();" />
 </div>
-<div id="tbl">
-    @*@{
-        Html.RenderPartial("StudentDetails");
-    }*@   
+<div id="tbl"> 
     @Html.Action("StudentDetails","Student")
 </div>
